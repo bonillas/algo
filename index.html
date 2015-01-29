@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    	<link href='http://fonts.googleapis.com/css?family=Nova+Mono&subset=latin,greek' rel='stylesheet' type='text/css'>
+    	<link href='https://fonts.googleapis.com/css?family=Ubuntu:300,500' rel='stylesheet' type='text/css'>
+    	<link rel='icon' href='../favicon.ico'>
+    	
+<style type="text/css">
+html,body{
+font-family: 'Nova Mono' ;
+  height:100%;
+  color: #ffffff;
+
+background-image: url(http://www.monumentvalleygame.com/images/background.jpg);
+background-size: cover;
+}
+
+</style>
+
+    <title>Computer Science Algorithms in Javascript by  Humantu </title>
+
+  </head>
+  <body>
+  	<div class="container-fluid" align="center" style="height: 100%;">
+ <div class="row" >
+
+<h1>Computer Science Algorithms in Javascript <span style="font-size: 16px; font-family: 'Ubuntu', sans-serif; text-shadow: rgb(255, 255, 255) 0px 0px 1px, rgb(255, 255, 255) 0px 0px 2px, rgb(255, 255, 255) 0px 0px 3px, rgb(173,198,255) 0px 0px 3px, rgb(173,198,255) 0px 0px 4px, rgb(173,198,255) 0px 0px 5px, rgb(173,198,255) 0px 0px 6px, rgb(173,198,255) 0px 0px 9px;"> by {humantu}®</span></h1>
+	Select Computer Science Code to load:  
+	<select class="form-control" onchange="loadScript(this.value);">
+		<option value="">Select script</option>
+  <option value="stacks">Data Structures: Stacks</option>
+  <option value="queues">Data Structures: Queues</option>
+   <option value="hashtable">Data Structures: Hashtables</option>
+  <option value="linkedlists">Data Structures: Linked Lists</option>
+  <option value="sets">Data Structures: Sets</option>
+    <option value="dlinkedlists">Data Structures: Double Linked Lists</option>
+      <option value="tests">Data Structures: Tests</option>
+    <option value="bst"> Data Structures & Search Algorithms: Binary Search Tree</option>
+     <option value="graph"> Data Structures & Search Algorithms: Graphs</option>
+    <option value="sequentialsearch"> Search Algorithms: Simple Sequential Search in Array</option>
+    <option value="binarysearch"> Search Algorithms: Binary Search in Array</option>
+     <option value="bubblesort"> Sorting Algorithms: Bubble Sort </option>
+      <option value="selectionsort"> Sorting Algorithms: Selection Sort </option>
+           <option value="insertion"> Sorting Algorithms: Insertion Sort </option>
+           <option value="mergesort"> Sorting Algorithms: Merge Sort </option>
+            <option value="quicksort"> Sorting Algorithms: Quick Sort </option>
+  <option value="palindrome">String and Number Operations: Palindrome</option>
+  <option value="factorial">String and Number Operations: Factorial</option>
+  <option value="fibonacci">String and Number Operations: Fibonacci</option>
+  <option value="rarray">String and Number Operations: Recursivly running through array</option>
+  <option value="sumnested">String and Number Operations: Recursivly summing nested array sublists</option>
+</select>
+</div>
+ <div class="row"  style="height: 100%;">
+<div class="col-md-4" style="height: 90%;" >
+Javascript Code<br />
+<textarea class="form-control" id="js" rows="20" style="height: 80%; font-family: monospace; font-size: 12px; background-color: #666666; color: #ffffff">
+var hello = document.getElementById("print");
+
+hello.innerHTML= "Hello, you can start writing javascript code here";
+</textarea>
+</div>
+<div class="col-md-4" style="height: 90%;">
+Html Code<br />
+<textarea class="form-control" id="html"  rows="20" style="height: 80%; font-family: monospace; font-size: 12px; background-color: #666666;color: #ffffff">
+<b>And you can write some HTML code right here</b>
+
+<div id="print"></div>
+</textarea>
+<br />
+<button onclick="doIt()"  type="button" style="color: #666666">Execute the code</button>
+
+</div>
+<div class="col-md-4" style="height: 90%;">
+Results:<br />
+
+	<iframe id="results" width="100%" height="80%"  style="background: #FFFFFF;"> </iframe>
+</div>
+
+</div>
+</div>
+
+
+
+<script>
+	function doIt(){
+		
+		//html
+		var base_tpl =
+			"<!doctype html>\n" +
+			"<html>\n\t" +
+      "<head>\n\t\t" +
+      "<meta charset=\"utf-8\">\n\t\t" +
+      "<title>Test</title>\n\n\t\t\n\t" +
+      "</head>\n\t" +
+      "<body>\n\t\n\t" +
+      "</body>\n" +
+      "</html>";
+      
+      var html = document.getElementById('html').value;
+      
+       html = base_tpl.replace('</body>', html + '</body>');
+      
+		//javascript
+		var js = document.getElementById('js').value;
+		
+		js = '<script>' + js + '<\/script>';
+		
+		//unite the code
+		code = html.replace('</body>', js + '</body>');
+		
+		//result panel
+		var ifrm = document.getElementById('results');
+		ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+		ifrm.document.open();
+        ifrm.document.write(code);
+        ifrm.document.close();
+		
+	}
+	
+	function loadScript(script){
+	
+		
+		if(script!=""){
+			var js = document.getElementById('js');
+			loadFile('js/'+script+'.js', js);
+			var html = document.getElementById('html');
+			loadFile('js/'+script+'.html', html);
+			
+			
+		}
+	};
+	
+	function loadFile(file, field){
+		var xmlhttp;
+		xmlhttp = new XMLHttpRequest();
+			xmlhttp.open('GET', file, true);
+			
+			//Lets define the method that gets called when the request finishes
+	        xmlhttp.onreadystatechange = function () {
+	        	
+	        //Any time the readyState of the XMLHttpRequest object changes this method is called.
+	        //Loading is complete when the readyState equals 4, so that's the only value we care about right now.
+    			if(xmlhttp.readyState == 4){
+    				
+    		    //Sweet! The page loaded. Now lets set the contents of the request to the TextArea
+        			field.value = xmlhttp.responseText;
+		    	}
+	    	};
+			xmlhttp.send();
+			
+	}
+</script>
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+    <!-- Latest compiled and minified JavaScript -->
+
+   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+</body>
+</html>
