@@ -10,4 +10,4 @@ Popular Search, Traversal and Sorting Algorithms like Binary Search, Bubble Sort
 Made based on the book "Data Structures and Algorithms with JavaScript" by Michael McMillan
 
 
-To see them live please go to: http://ui.humantu.com/algo
+To see them live please go to: http://humantu.com/ui/algo
